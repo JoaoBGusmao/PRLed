@@ -1,8 +1,18 @@
 import ApolloClient from 'apollo-boost';
 import fetch from 'node-fetch';
 import gql from 'graphql-tag';
+import ledManager from './ledManager';
 
 global.fetch = fetch;
+
+const LED_NUMBER = parseInt(process.env.LED_NUMBER, 10);
+
+const dict = {
+  APPROVED: 0x00FF00,
+  OPEN: 0x0000FF,
+  CHANGES_REQUESTED: 0xFF0000,
+  OFF: 0x000000,
+};
 
 const configuration = {
   users: [
@@ -53,10 +63,7 @@ const getPRList = async () => {
           }
         }
       `,
-    }, {
-      options: {
-        fetchPolicy: 'no-cache',
-      },
+      fetchPolicy: 'no-cache',
     });
 
     return result.data;
@@ -73,15 +80,32 @@ const getPRsReadyToReview = prList => (
   prList.filter(pr => pr.state === 'OPEN' && pr.title.indexOf('[WIP]') === -1)
 );
 
+// TODO: take the last if it its not a dismissed review
 const getLastReview = pr => pr.slice().reverse()[0];
 
 const getPRStates = prList => (
   prList.map((pr) => {
     const lastReview = getLastReview(pr.reviews.edges) || {};
 
-    return lastReview.node ? lastReview.node.state : 'OPEN';
+    return lastReview.node ? dict[lastReview.node.state] : dict.OPEN;
   })
 );
+
+const divideLeds = (result, ledNum) => {
+  const arrays = result.map((res) => {
+    if (typeof res === 'object') {
+      const totalLedNew = ledNum / res.length;
+      return divideLeds(res, totalLedNew);
+    }
+
+    return new Array(ledNum).fill(res);
+  });
+
+  const finalArray = [];
+  arrays.forEach(arr => finalArray.push(...arr));
+
+  return finalArray;
+};
 
 const setPRLights = async () => {
   const { repository: { pullRequests } } = await getPRList();
@@ -96,18 +120,24 @@ const setPRLights = async () => {
     const onlyReadyToReview = getPRsReadyToReview(userPRs);
     const prStates = getPRStates(onlyReadyToReview);
 
-    return prStates;
+    return prStates.length === 0 ? [dict.OFF] : prStates;
   });
 
-  return lights;
+  const totalLedForEach = LED_NUMBER / configuration.users.length;
+  const lightsDivided = divideLeds(lights, totalLedForEach);
+
+  ledManager.blinkAndFix(lightsDivided);
+
+  return [];
 };
 
-const boot = async () => {
-  console.log('PRLed Application started');
+const boot = () => {
+  ledManager.init(LED_NUMBER);
+  ledManager.setBrightness(10);
+};
 
-  const lights = await setPRLights();
-
-  console.log(lights);
+export const setLights = async () => {
+  await setPRLights();
 };
 
 export default boot;
