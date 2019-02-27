@@ -43,7 +43,7 @@ const getPRList = async () => {
     const result = await client.query({
       query: gql`
         query {
-          repository(owner: "JoaoBGusmao", name: "PRLed") {
+          repository(owner: ${process.env.REPO_OWNER}, name: ${process.env.REPO_NAME}) {
             pullRequests(last: 100, states: [OPEN]) {
               nodes {
                 title,
