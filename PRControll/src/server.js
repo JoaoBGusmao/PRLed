@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+const exec = require('child_process').exec;
 import ledManager from './ledManager';
 import { setLights } from './PRMan2';
 
@@ -17,6 +18,26 @@ router.get('/setBrightness', (req, res) => {
     const { quantity } = req.query;
 
     ledManager.setBrightness(parseInt(quantity, 10) || 255);
+
+    res.json({ success: true });
+  } catch (err) {
+    res.json({ success: false });
+  }
+});
+
+router.get('/shutdown', (req, res) => {
+  try {
+    exec('sh /home/pi/Desktop/shutdown.sh');
+
+    res.json({ success: true });
+  } catch (err) {
+    res.json({ success: false });
+  }
+});
+
+router.get('/updateCode', (req, res) => {
+  try {
+    exec('sh /home/pi/Desktop/updateCode.sh');
 
     res.json({ success: true });
   } catch (err) {
