@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fdd30451-079c-4a0e-8a8b-cb37613e5b8c" name="Default Changelist" comment="" />
+    <list default="true" id="fdd30451-079c-4a0e-8a8b-cb37613e5b8c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/PRControll/src/ledManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/PRControll/src/ledManager.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +33,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PRControll/src/PRMan2.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3384">
@@ -43,14 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PRControll/src/ledManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="8" selection-start-column="8" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -137,7 +136,6 @@
         <option value="$PROJECT_DIR$/mock-led/public/index.html" />
         <option value="$PROJECT_DIR$/mock-led/src/App.css" />
         <option value="$PROJECT_DIR$/mock-led/src/Led.js" />
-        <option value="$PROJECT_DIR$/PRControll/src/ledManager.js" />
         <option value="$PROJECT_DIR$/PRControll/package.json" />
         <option value="$PROJECT_DIR$/mock-led-api/data.json" />
         <option value="$PROJECT_DIR$/PRControll/src/PRMan.js" />
@@ -151,6 +149,7 @@
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_69.es6" />
         <option value="$PROJECT_DIR$/PRControll/src/server.js" />
         <option value="$PROJECT_DIR$/PRControll/src/PRMan2.js" />
+        <option value="$PROJECT_DIR$/PRControll/src/ledManager.js" />
       </list>
     </option>
   </component>
@@ -252,12 +251,12 @@
       <workItem from="1551932206535" duration="129000" />
       <workItem from="1551932373905" duration="7341000" />
       <workItem from="1551973510213" duration="1694000" />
-      <workItem from="1551983297867" duration="1104000" />
+      <workItem from="1551983297867" duration="1317000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21078000" />
+    <option name="totallyTimeSpent" value="21291000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -270,7 +269,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.34191704" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -442,16 +440,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PRControll/src/ledManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mock-led/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
@@ -497,6 +485,13 @@
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PRControll/src/ledManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="8" selection-start-column="8" selection-end-column="8" />
         </state>
       </provider>
     </entry>

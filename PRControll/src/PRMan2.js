@@ -186,7 +186,7 @@ const setPRLights = async () => {
 
 const boot = () => {
   ledManager.init(LED_NUMBER);
-  ledManager.setBrightness(50);
+  ledManager.setBrightness(200);
 };
 
 export const setLights = async () => {
