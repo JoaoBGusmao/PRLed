@@ -11,6 +11,7 @@ const MOCK_DICT = {
   APPROVED: '0x00FF00',
   OPEN: '0x0000FF',
   CHANGES_REQUESTED: '0xFF0000',
+  FAILED: '0xFFFF00',
   OFF: '0x000000',
 };
 
@@ -18,6 +19,7 @@ const LIB_DICT = {
   APPROVED: 0x00FF00,
   OPEN: 0x0000FF,
   CHANGES_REQUESTED: 0xFF0000,
+  FAILED: 0xFFFF00,
   OFF: 0x000000,
 };
 
@@ -142,11 +144,11 @@ const LedRules = (user) => {
 
   const status = pullRequests.map((pr) => {
     if (pr.lastCommit !== 'SUCCESS') {
-      return 'CHANGES_REQUESTED';
+      return 'FAILED';
     }
 
     if (pr.mergeable !== 'MERGEABLE') {
-      return 'CHANGES_REQUESTED';
+      return 'FAILED';
     }
 
     if (pr.reviewsCount === 0) {
