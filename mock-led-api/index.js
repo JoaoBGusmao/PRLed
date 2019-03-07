@@ -9,10 +9,7 @@ const LedAPI = {
       method: 'PUT',
       data: { colors }
     };
-    const isAllNull = colors.filter(color => color !== null).length === 0;
-    if (colors.length > 0 && !isAllNull) {
-      fetch(opt);
-    }
+    fetch(opt);
   },
 };
 

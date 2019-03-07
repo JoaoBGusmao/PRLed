@@ -81,7 +81,17 @@ const getPRsReadyToReview = prList => (
 );
 
 // TODO: take the last if it its not a dismissed review
-const getLastReview = pr => pr.slice().reverse()[0];
+// const getLastReview = pr => pr.slice().reverse()[0];
+const getLastReview = (pr) => {
+  const reverse = pr.slice().reverse();
+  return reverse.find((item) => {
+    const { node = {} } = item;
+    const state = node;
+    if (state !== undefined) {
+      return dict[state] != null
+    }
+  });
+}
 
 const getPRStates = prList => (
   prList.map((pr) => {

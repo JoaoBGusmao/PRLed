@@ -14,11 +14,11 @@ class App extends Component {
         .then(({ colors }) => {
           this.setState({ colors });
         })
-    }, 2000)
+    }, 100)
   }
 
   blink = () => {
-    fetch('http://localhost/blink?color=0x115555');
+    fetch('http://localhost/blink?color=0x115555&times=10');
   }
 
   render() {
@@ -29,7 +29,7 @@ class App extends Component {
         <br />
         <div className="App">
           {colors.map((color, ix) => (
-            <Led key={ix.toString()} color={(color || '').replace('0x', '#')} />
+            <Led key={ix.toString()} color={(typeof color === 'string' ? color : '').replace('0x', '#')} />
           ))}
         </div>
       </div>
