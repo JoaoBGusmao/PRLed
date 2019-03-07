@@ -28,7 +28,7 @@ router.get('/blink', (req, res) => {
   try {
     const { color, times = 3, fixed } = req.query;
 
-    ledManager.blink(new Array(30).fill(color), times, fixed === 'true');
+    ledManager.blink(new Array(90).fill(color), times, fixed === 'true');
 
     res.json({ success: true });
   } catch (err) {
