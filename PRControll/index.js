@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import ledBoot, { setLights } from './src/PRMan';
+import ledBoot, { setLights } from './src/PRMan2';
 import server from './src/server';
 
 const boot = () => {

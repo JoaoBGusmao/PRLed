@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import ledManager from './ledManager';
-import { setLights } from './PRMan';
+import { setLights } from './PRMan2';
 
 const app = express();
 
