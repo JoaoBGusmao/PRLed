@@ -159,7 +159,7 @@ const LedRules = (user) => {
     const approveds = reviewers.filter(key => pr.reviews[key] === 'APPROVED');
 
     if (reviewers.length === approveds.length) {
-      return 'APRROVED';
+      return 'APPROVED';
     }
 
     return 'CHANGES_REQUESTED';
