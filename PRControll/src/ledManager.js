@@ -1,7 +1,7 @@
-import realLedLib from 'rpi-ws281x-native';
-import mockLedLib from '../../mock-led-api/index';
+import ledLib from 'rpi-ws281x-native';
+// import mockLedLib from '../../mock-led-api/index';
 
-const ledLib = process.env.MOCK ? mockLedLib : realLedLib;
+// const ledLib = process.env.MOCK ? mockLedLib : realLedLib;
 
 let lastStrip = [];
 
