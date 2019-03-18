@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-const exec = require('child_process').exec;
+const { spawn, exec } = require('child_process');
 import ledManager from './ledManager';
 import { setLights } from './PRMan2';
 
@@ -37,9 +37,33 @@ router.get('/shutdown', (req, res) => {
 
 router.get('/updateCode', (req, res) => {
   try {
-    exec('sh /home/pi/Desktop/updateCode.sh');
+    const commands = [
+      () => spawn('cd', ['/home/pi/Desktop/PRLed2']),
+      () => spawn('git', ['reset', '--hard', 'HEAD']),
+      () => spawn('git', ['pull']),
+      () => spawn('cd', ['/home/pi/Desktop/PRLed2/PRControll']),
+      () => spawn('yarn', ['build']),
+      () => spawn('reboot', []),
+    ];
+    const runCommand = (command, index = 0, text = '') => {
+      command.stdout.on('data', (data) => {
+        const message = `${text}\n${data}`;
+        if (commands.length < index + 1) {
+          runCommand(commands[index + 1], index + 1, text);
+        }
 
-    res.json({ success: true });
+        return res.json({ status: 'success', message });
+      });
+
+      command.stderr.on('data', (data) => {
+        const message = `${text}\n${data}`;
+        return res.json({ status: 'error', message });
+      });
+    }
+    runCommand(commands[0]);
+    // exec('sh /home/pi/Desktop/updateCode.sh');
+
+    // res.json({ success: true });
   } catch (err) {
     res.json({ success: false });
   }
