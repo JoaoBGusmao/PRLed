@@ -42,14 +42,14 @@ router.get('/updateCode', (req, res) => {
       () => spawn('git', ['reset', '--hard', 'HEAD']),
       () => spawn('git', ['pull']),
       () => spawn('cd', ['/home/pi/Desktop/PRLed2/PRControll']),
-      () => spawn('yarn', ['build']),
+      () => spawn('sudo', ['yarn', 'build']),
       () => spawn('reboot', []),
     ];
     const runCommand = (command, index = 0, text = '') => {
       command.stdout.on('data', (data) => {
         const message = `${text}\n${data}`;
         if (commands.length < index + 1) {
-          runCommand(commands[index + 1], index + 1, text);
+          runCommand(commands[index + 1](), index + 1, text);
         }
 
         return res.json({ status: 'success', message });
@@ -60,7 +60,7 @@ router.get('/updateCode', (req, res) => {
         return res.json({ status: 'error', message });
       });
     }
-    runCommand(commands[0]);
+    runCommand(commands[0]());
     // exec('sh /home/pi/Desktop/updateCode.sh');
 
     // res.json({ success: true });
