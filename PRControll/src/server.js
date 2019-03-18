@@ -37,33 +37,33 @@ router.get('/shutdown', (req, res) => {
 
 router.get('/updateCode', (req, res) => {
   try {
-    const commands = [
-      () => spawn('cd', ['/home/pi/Desktop/PRLed2']),
-      () => spawn('git', ['reset', '--hard', 'HEAD']),
-      () => spawn('git', ['pull']),
-      () => spawn('cd', ['/home/pi/Desktop/PRLed2/PRControll']),
-      () => spawn('sudo', ['yarn', 'build']),
-      () => spawn('reboot', []),
-    ];
-    const runCommand = (command, index = 0, text = '') => {
-      command.stdout.on('data', (data) => {
-        const message = `${text}\n${data}`;
-        if (commands.length < index + 1) {
-          runCommand(commands[index + 1](), index + 1, text);
-        }
+    // const commands = [
+    //   () => spawn('cd', ['/home/pi/Desktop/PRLed2']),
+    //   () => spawn('git', ['reset', '--hard', 'HEAD']),
+    //   () => spawn('git', ['pull']),
+    //   () => spawn('cd', ['/home/pi/Desktop/PRLed2/PRControll']),
+    //   () => spawn('sudo', ['yarn', 'build']),
+    //   () => spawn('reboot', []),
+    // ];
+    // const runCommand = (command, index = 0, text = '') => {
+    //   command.stdout.on('data', (data) => {
+    //     const message = `${text}\n${data}`;
+    //     if (commands.length < index + 1) {
+    //       runCommand(commands[index + 1](), index + 1, text);
+    //     }
+    //
+    //     return res.json({ status: 'success', message });
+    //   });
+    //
+    //   command.stderr.on('data', (data) => {
+    //     const message = `${text}\n${data}`;
+    //     return res.json({ status: 'error', message });
+    //   });
+    // }
+    // runCommand(commands[0]());
+    exec('sh /home/pi/Desktop/updateCode.sh');
 
-        return res.json({ status: 'success', message });
-      });
-
-      command.stderr.on('data', (data) => {
-        const message = `${text}\n${data}`;
-        return res.json({ status: 'error', message });
-      });
-    }
-    runCommand(commands[0]());
-    // exec('sh /home/pi/Desktop/updateCode.sh');
-
-    // res.json({ success: true });
+    res.json({ success: true });
   } catch (err) {
     res.json({ success: false });
   }
