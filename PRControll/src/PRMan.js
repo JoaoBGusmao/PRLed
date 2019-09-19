@@ -25,8 +25,8 @@ const configuration = {
       login: 'JoaoBGusmao',
     },
     {
-      name: 'Moyle',
-      login: 'rodrigorm',
+      name: 'Marco',
+      login: 'marcoantoniocanhas',
     },
   ],
 };
