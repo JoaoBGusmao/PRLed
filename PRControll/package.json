@@ -23,7 +23,7 @@
     "express": "^4.16.4",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
-    "node-fetch": "^2.3.0",
+    "node-fetch": "^2.6.1",
     "rpi-ws281x-native": "^0.9.0"
   },
   "devDependencies": {
